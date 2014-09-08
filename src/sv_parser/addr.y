@@ -102,16 +102,18 @@ mailbox:
 		context->addr_addr->name = libsieve_strdup( $1 );
 		};
 
-angle_addr: '<' addr_spec '>'		{ TRACE_DEBUG( "angle_addr: addr_spec: %s", $2 ); }
+angle_addr: '<' addr_spec '>'		{ TRACE_DEBUG( "angle_addr: addr_spec: %s", $2 ); $$ = $2; }
 	| '<' route ':' addr_spec '>'	{
 		TRACE_DEBUG( "angle_addr: route addr_spec: %s:%s", $2, $4 );
 		// This is a "top terminal" state...
 		TRACE_DEBUG( "context->addr_addr->route: %s", $2 );
 		context->addr_addr->route = libsieve_strdup( $2 );
+		$$ = $4;
 		}
 	| '<' '>'			{
 		TRACE_DEBUG("angle_addr: <>");
 		context->addr_addr->mailbox = libsieve_strdup( "" );
+		$$ = "";
 		};
 
 addr_spec: local_part '@' domain		{
