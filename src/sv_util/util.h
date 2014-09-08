@@ -13,7 +13,7 @@
 
 /* Needed for printf. */
 #include <stdio.h>
-#include "exception.h"
+#include "sv_util/exception.h"
 
 /* Define several macros for GCC specific attributes.
  * Although the __attribute__ macro can be easily defined
@@ -35,9 +35,9 @@
 
 
 /* Things that are happening normally. */
-#define TRACE_DEBUG(fmt...) libsieve_do_debug_trace(context, 4, THIS_MODULE, __FILE__, __func__, fmt)
+#define TRACE_DEBUG(fmt, ...) libsieve_do_debug_trace(context, 4, THIS_MODULE, __FILE__, "__func__", fmt, __VA_ARGS__)
 /* Bad things that will result in a failure code. */
-#define TRACE_ERROR(fmt...) libsieve_do_debug_trace(context, 2, THIS_MODULE, __FILE__, __func__, fmt)
+#define TRACE_ERROR(fmt, ...) libsieve_do_debug_trace(context, 2, THIS_MODULE, __FILE__, "__func__", fmt, __VA_ARGS__)
 /* All assertions are always tested, and errors thrown upwards. */
 #define libsieve_assert(cond) ( (cond) ? 0 : ( TRACE_ERROR("Assertion failed: [%s]", #cond), throw(SIEVE2_ERROR_INTERNAL) ) )
 

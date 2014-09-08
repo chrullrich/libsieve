@@ -25,6 +25,8 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
+#include "msvc.h"
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -33,23 +35,16 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <string.h>
 #include <ctype.h>
 
-/* sv_include */
-#include "sieve2.h"
-
-/* sv_interface */
-#include "message.h"
-#include "message2.h"
-#include "callbacks2.h"
-#include "context2.h"
-#include "script.h"
-#include "src/sv_parser/sieve.h"
-#include "tree.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
-
-/* sv_parser */
-#include "src/sv_parser/parser.h"
+#include "sv_include/sieve2.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_interface/context2.h"
+#include "sv_interface/message.h"
+#include "sv_interface/message2.h"
+#include "sv_interface/script.h"
+#include "sv_interface/tree.h"
+#include "sv_parser/parser.h"
+#include "sv_parser/sieve.h"
+#include "sv_util/util.h"
 
 #define THIS_MODULE "sv_interface"
 

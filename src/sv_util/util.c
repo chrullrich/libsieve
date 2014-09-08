@@ -8,6 +8,7 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
+#include "msvc.h"
 
 #include <config.h>
 #include <stdio.h>
@@ -16,8 +17,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "util.h"
-#include "sieve2_error.h"
+#include "sv_include/sieve2_error.h"
+#include "sv_util/util.h"
 
 /* Wrapper around memset() */
 void *libsieve_memset(void *ptr, int c, size_t len)

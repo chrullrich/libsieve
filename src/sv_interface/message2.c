@@ -18,16 +18,11 @@
 /* strlen() */
 #include <string.h>
 
-/* sv_parser */
-#include "src/sv_parser/headerinc.h"
-
-/* sv_interface */
-#include "message2.h"
-#include "context2.h"
-#include "callbacks2.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
+#include "sv_interface/message2.h"
+#include "sv_interface/context2.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_parser/headerinc.h"
+#include "sv_util/util.h"
 
 #define THIS_MODULE "sv_interface"
 

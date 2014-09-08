@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "exception.h"
+#include "sv_util/exception.h"
 
 /* global stack of exception context */
 struct _exceptionContext_ *const _returnExceptionContext_ = NULL;

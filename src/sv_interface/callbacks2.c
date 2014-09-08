@@ -9,6 +9,8 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
+#include "msvc.h"
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -17,17 +19,11 @@
 #include <string.h>
 #include <stdarg.h>
 
-/* sv_include */
-#include "sieve2.h"
-#include "sieve2_error.h"
-
-/* sv_interface */
-#include "sieve2.h"
-#include "context2.h"
-#include "callbacks2.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
+#include "sv_include/sieve2.h"
+#include "sv_include/sieve2_error.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_interface/context2.h"
+#include "sv_util/util.h"
 
 /* Reject is incompatible with:
  * fileinto, redirect, keep, reject, vacation,

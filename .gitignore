@@ -1,0 +1,7 @@
+build
+*.obj
+
+src/sv_parser/*-lex.[ch]
+src/sv_parser/addr.[ch]
+src/sv_parser/header.[ch]
+src/sv_parser/sieve.[ch]

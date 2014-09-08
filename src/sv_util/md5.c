@@ -20,6 +20,8 @@
  *
  */
 
+#include "msvc.h"
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -31,7 +33,7 @@
 #include <string.h>		/* for memcpy() */
 #include <stdio.h>		/* for sprintf() */
 
-#include "util.h"
+#include "sv_util/util.h"
 
 typedef unsigned int uint32;
 

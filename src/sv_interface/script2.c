@@ -19,22 +19,18 @@
 #include <assert.h>
 
 /* CMU portions. */
-#include "tree.h"
-#include "script.h"
-#include "message.h"
+#include "sv_interface/tree.h"
+#include "sv_interface/script.h"
+#include "sv_interface/message.h"
 
 /* libSieve additions. */
-#include "callbacks2.h"
-#include "message2.h"
-#include "context2.h"
-#include "sieve2.h"
-#include "sieve2_error.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
-
-/* sv_parser */
-#include "src/sv_parser/parser.h"
+#include "sv_include/sieve2.h"
+#include "sv_include/sieve2_error.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_interface/context2.h"
+#include "sv_interface/message2.h"
+#include "sv_parser/parser.h"
+#include "sv_util/util.h"
 
 VISIBLE char * sieve2_errstr(int code) 
 {

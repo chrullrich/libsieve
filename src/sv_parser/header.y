@@ -10,6 +10,8 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
+ #include "msvc.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,16 +21,14 @@
 /* Must be defined before header.h */
 #define YYSTYPE char *
 
-/* sv_util */
-#include "src/sv_util/util.h"
-#include "src/sv_interface/callbacks2.h"
-/* sv_parser */
-#include "header.h"
-#include "headerinc.h"
-#include "header-lex.h"
+#include "sv_include/sieve2_error.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_parser/header.h"
+#include "sv_parser/headerinc.h"
+#include "sv_parser/header-lex.h"
+#include "sv_util/util.h"
+
 extern YY_DECL;
-/* sv_include */
-#include "src/sv_include/sieve2_error.h"
 
 #define THIS_MODULE "sv_parser"
 static void libsieve_headerentry(struct sieve2_context *context, char *name, char *body);

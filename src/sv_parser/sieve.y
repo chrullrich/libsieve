@@ -26,6 +26,8 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
+#include "msvc.h"
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -34,21 +36,15 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <string.h>
 #include <ctype.h>
 
-/* sv_regex */
-#include "src/sv_regex/regex.h"
+#include "sv_regex/regex.h"
+#include "sv_parser/comparator.h"
+#include "sv_parser/addrinc.h"
+#include "sv_parser/sieveinc.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_util/util.h"
+#include "sv_parser/sieve.h"
+#include "sv_parser/sieve-lex.h"
 
-/* sv_parser */
-#include "comparator.h"
-#include "addrinc.h"
-#include "sieveinc.h"
-
-/* sv_interface */
-#include "src/sv_interface/callbacks2.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
-#include "sieve.h"
-#include "sieve-lex.h"
 #define THIS_MODULE "sv_parser"
 
 struct vtags {

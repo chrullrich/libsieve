@@ -28,8 +28,8 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #ifndef TREE_H
 #define TREE_H
 
-#include "src/sv_parser/comparator.h"
-#include "src/sv_regex/regex.h"
+#include "sv_parser/comparator.h"
+#include "sv_regex/regex.h"
 
 
 /* abstract syntax tree for sieve */

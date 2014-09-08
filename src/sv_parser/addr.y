@@ -27,6 +27,8 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
+#include "msvc.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,19 +38,17 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 /* Must be defined before addr.h */
 #define YYSTYPE char *
 
-/* sv_util */
-#include "src/sv_util/util.h"
+#include "sv_util/util.h"
+#include "sv_parser/addr.h"
+#include "sv_parser/addrinc.h"
+#include "sv_parser/addr-lex.h"
 
-/* sv_parser */
-#include "addr.h"
-#include "addrinc.h"
-#include "addr-lex.h"
 extern YY_DECL;
 static void libsieve_addrappend(struct sieve2_context *context);
 static struct address *libsieve_addrstructcopy(struct sieve2_context *context);
 
 /* sv_interface */
-#include "src/sv_interface/callbacks2.h"
+#include "sv_interface/callbacks2.h"
 
 #define THIS_MODULE "sv_parser"
 

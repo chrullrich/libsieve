@@ -32,20 +32,14 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <string.h>
 
 /* sv_include */
-#include "sieve2.h"
-#include "sieve2_error.h"
-
-/* sv_interface */
-#include "tree.h"
-#include "script.h"
-#include "message.h"
-#include "callbacks2.h"
-
-/* sv_parser */
-#include "src/sv_parser/parser.h"
-
-/* sv_util */
-#include "src/sv_util/util.h"
+#include "sv_include/sieve2.h"
+#include "sv_include/sieve2_error.h"
+#include "sv_interface/tree.h"
+#include "sv_interface/script.h"
+#include "sv_interface/message.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_parser/parser.h"
+#include "sv_util/util.h"
 
 /* given a header, extract an address out of it.  if marker points to NULL,
    extract the first address.  otherwise, it's an index into the header to

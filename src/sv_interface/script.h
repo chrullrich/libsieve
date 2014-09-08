@@ -28,9 +28,9 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #ifndef SIEVE_SCRIPT_H
 #define SIEVE_SCRIPT_H
 
-#include "tree.h"
-#include "sieve2.h"
-#include "context2.h"
+#include "sv_include/sieve2.h"
+#include "sv_interface/tree.h"
+#include "sv_interface/context2.h"
 
 int libsieve_eval(struct sieve2_context *context,
 		commandlist_t *c, const char **errmsg);

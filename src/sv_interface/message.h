@@ -28,8 +28,8 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-#include "tree.h"		/* for stringlist_t */
-#include "src/sv_parser/addrinc.h"		/* for struct address */
+#include "sv_interface/tree.h"		/* for stringlist_t */
+#include "sv_parser/addrinc.h"		/* for struct address */
 
 typedef enum {
     ACTION_NULL = -1,

@@ -41,15 +41,17 @@
 #  define re_compile_fastmap(bufp) __re_compile_fastmap (bufp)
 #endif
 
+#include <stdio.h>
+
 /* POSIX says that <sys/types.h> must be included (by the caller) before
    <regex.h>.  */
 #include <sys/types.h>
-#include "regex.h"
-#include "regex_internal.h"
+#include "sv_regex/regex.h"
+#include "sv_regex/regex_internal.h"
 
-#include "regex_internal.c"
-#include "regcomp.c"
-#include "regexec.c"
+#include "sv_regex/regex_internal.c"
+#include "sv_regex/regcomp.c"
+#include "sv_regex/regexec.c"
 
 /* Binary backward compatibility.  */
 #if _LIBC

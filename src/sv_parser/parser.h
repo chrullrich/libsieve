@@ -16,8 +16,8 @@ struct addr_marker {
 };
 
 /* SIEVE */
-#include "src/sv_interface/context2.h"
-#include "src/sv_interface/message2.h"
+#include "sv_interface/context2.h"
+#include "sv_interface/message2.h"
 
 struct address *libsieve_addr_parse_buffer(struct sieve2_context *context, struct address **data, const char **ptr);
 int libsieve_addrlex_destroy(void *yyscanner);

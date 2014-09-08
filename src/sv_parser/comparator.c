@@ -25,6 +25,8 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
+#include "msvc.h"
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -33,11 +35,11 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <ctype.h>
 #include <string.h>
 
-#include "comparator.h"
-#include "src/sv_interface/tree.h"
-#include "sieve.h"
-#include "src/sv_util/util.h"
-#include "src/sv_interface/callbacks2.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_interface/tree.h"
+#include "sv_parser/comparator.h"
+#include "sv_parser/sieve.h"
+#include "sv_util/util.h"
 
 #define THIS_MODULE "sv_comparator"
 

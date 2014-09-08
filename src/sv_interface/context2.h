@@ -12,9 +12,9 @@
 #ifndef CONTEXT2_H
 #define CONTEXT2_H
 
-#include "tree.h"		/* for commandlist_t */
-#include "src/sv_include/sieve2.h"
-#include "message2.h"
+#include "sv_include/sieve2.h"
+#include "sv_interface/message2.h"
+#include "sv_interface/tree.h"		/* for commandlist_t */
 
 struct callbacks2 {
     sieve2_callback_func redirect;

@@ -27,18 +27,17 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
+#include "msvc.h"
 
 /* Must be defined before addr.h */
 #define YYSTYPE char *
 
 #include <string.h>
-/* sv_util */
-#include "src/sv_util/util.h"
-/* sv_interface */
-#include "src/sv_interface/callbacks2.h"
-/* sv_parser */
-#include "addr.h"
-#include "addrinc.h"
+
+#include "sv_interface/callbacks2.h"
+#include "sv_parser/addr.h"
+#include "sv_parser/addrinc.h"
+#include "sv_util/util.h"
 
 #define THIS_MODULE "sv_parser"
 %}

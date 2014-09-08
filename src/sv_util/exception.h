@@ -15,10 +15,6 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
-#ifndef __STDC__
-#  error "exception.h needs ISO C compiler to work properly"
-#endif
-
 #include <setjmp.h>
 
 /*
@@ -121,7 +117,7 @@ extern struct _exceptionContext_ *_currentExceptionContext_;
   struct _protectedPtr_ _concat_(_protected_, ptr) =			    \
   _protectPtr_(&_concat_(_protected_, ptr), (ptr), (void(*)(void *))(func))
 
-static inline struct _protectedPtr_
+static struct _protectedPtr_
 _protectPtr_(struct _protectedPtr_ *_ptr, void* ptr, void (*func)(void*)) 
 { 
   if (_currentExceptionContext_) { 
@@ -133,7 +129,7 @@ _protectPtr_(struct _protectedPtr_ *_ptr, void* ptr, void (*func)(void*))
   return *_ptr;
 }
 
-static inline void
+static void
 unprotectPtr(void *ptr)
 {
   if (_currentExceptionContext_ &&

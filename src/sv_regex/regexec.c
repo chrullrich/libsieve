@@ -2090,7 +2090,7 @@ transit_state (err, preg, mctx, state, fl_search)
 	{
 	  /* don't use transition table  */
 	  next_state = transit_state_sb (err, preg, state, fl_search, mctx);
-	  if (BE (next_state == NULL && err != REG_NOERROR, 0))
+	  if (BE (next_state == NULL && *err != REG_NOERROR, 0))
 	    return NULL;
 	}
     }

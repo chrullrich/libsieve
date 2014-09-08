@@ -10,18 +10,17 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
+ #include "msvc.h"
 
 /* Must be defined before header.h */
 #define YYSTYPE char *
 
 #include <string.h>
-/* sv_util */
-#include "src/sv_util/util.h"
-/* sv_interface */
-#include "src/sv_interface/callbacks2.h"
-/* sv_parser */
-#include "header.h"
-#include "headerinc.h"
+
+#include "sv_util/util.h"
+#include "sv_interface/callbacks2.h"
+#include "sv_parser/header.h"
+#include "sv_parser/headerinc.h"
 
 #define THIS_MODULE "sv_parser"
 %}

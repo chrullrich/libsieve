@@ -12,8 +12,8 @@
 #ifndef CALLBACKS2_H
 #define CALLBACKS2_H
 
-#include "src/sv_util/util.h"
-#include "context2.h"
+#include "sv_interface/context2.h"
+#include "sv_util/util.h"
 
 int libsieve_callback_begin(
     struct sieve2_context *context,
@@ -43,19 +43,19 @@ int libsieve_do_keep(struct sieve2_context *c, stringlist_t *slflags);
 int libsieve_do_discard(struct sieve2_context *c);
 int libsieve_do_vacation(struct sieve2_context *c, char *addr, char *fromaddr,
 		char *subj, char *msg, char *handle,
-		int days, int mime);
+		const int days, const int mime);
 int libsieve_do_notify(struct sieve2_context *c, char *id,
 		char *method, stringlist_t *options,
 		char *priority, char *message);
 
 /* Reporting parse and runtime errors. */
-int libsieve_do_error_parse(struct sieve2_context *c, int lineno, const char *msg);
-int libsieve_do_error_exec(struct sieve2_context *c, char *msg);
-int libsieve_do_error_header(struct sieve2_context *c, int lineno, const char *msg);
-int libsieve_do_error_address(struct sieve2_context *c, const char *msg);
+int libsieve_do_error_parse(struct sieve2_context *c, const int lineno, const char *const msg);
+int libsieve_do_error_exec(struct sieve2_context *c, char * msg);
+int libsieve_do_error_header(struct sieve2_context *c, const int lineno, const char *const msg);
+int libsieve_do_error_address(struct sieve2_context *c, const char *const msg);
 
 /* The TRACE macros are defined in util.h, which is universally included. */
-int libsieve_do_debug_trace(struct sieve2_context *c, int level,
+int libsieve_do_debug_trace(struct sieve2_context *c, const int level,
 		const char *module, const char *file, const char *function,
 		const char *formatstring, ...) PRINTF_ARGS(6, 7);
 

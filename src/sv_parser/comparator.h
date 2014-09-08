@@ -27,8 +27,8 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #ifndef COMPARATOR_H
 #define COMPARATOR_H
 
-#include "src/sv_regex/regex.h"
-#include "src/sv_include/sieve2.h"
+#include "sv_regex/regex.h"
+#include "sv_include/sieve2.h"
 
 /* compares pat to text; returns 1 if it's true, 0 otherwise 
    first arg is pat, second arg is text */
