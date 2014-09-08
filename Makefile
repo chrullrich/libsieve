@@ -2,16 +2,18 @@ FLEX=flex
 BISON=bison
 AR=lib
 
-FLFLAGS=--nounistd --bison-bridge
+FLFLAGS=--nounistd
 YFLAGS=
 
 !IFDEF DEBUG
 CFLAGS=/Isrc /Zi /MDd /Fdbuild\libsieve.pdb
+LIBSIEVE=libsieve_d.lib
 !ELSE
 CFLAGS=/Isrc /O2 /MD
+LIBSIEVE=libsieve.lib
 !ENDIF
 
-all: build\libsieve.lib
+all: build\$(LIBSIEVE)
 
 clean:
 	del /s *.lib
@@ -40,6 +42,6 @@ src\sv_parser\header.c src\sv_parser\header.h: src\sv_parser\header.y
 src\sv_parser\sieve.c src\sv_parser\sieve.h: src\sv_parser\sieve.y
 	$(BISON) $(YFLAGS) -o $*.c $**
 
-build\libsieve.lib: src\sv_interface\callbacks2.obj src\sv_interface\context2.obj src\sv_interface\message.obj src\sv_interface\message2.obj src\sv_interface\script.obj src\sv_interface\script2.obj src\sv_interface\tree.obj src\sv_parser\addr.obj src\sv_parser\addr-lex.obj src\sv_parser\comparator.obj src\sv_parser\header.obj src\sv_parser\header-lex.obj src\sv_parser\sieve.obj src\sv_parser\sieve-lex.obj src\sv_regex\regex.obj src\sv_util\exception.obj src\sv_util\md5.obj src\sv_util\util.obj
+build\$(LIBSIEVE): src\sv_interface\callbacks2.obj src\sv_interface\context2.obj src\sv_interface\message.obj src\sv_interface\message2.obj src\sv_interface\script.obj src\sv_interface\script2.obj src\sv_interface\tree.obj src\sv_parser\addr.obj src\sv_parser\addr-lex.obj src\sv_parser\comparator.obj src\sv_parser\header.obj src\sv_parser\header-lex.obj src\sv_parser\sieve.obj src\sv_parser\sieve-lex.obj src\sv_regex\regex.obj src\sv_util\exception.obj src\sv_util\md5.obj src\sv_util\util.obj
 	$(AR) /nologo /out:$@ $(**F)
 
