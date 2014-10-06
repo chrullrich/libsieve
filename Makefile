@@ -5,11 +5,17 @@ AR=lib
 FLFLAGS=--nounistd
 YFLAGS=
 
+!IFDEF STATIC
+CRTLIB=T
+!ELSE
+CRTLIB=D
+!ENDIF
+
 !IFDEF DEBUG
-CFLAGS=/Isrc /Zi /MDd /Fdbuild\libsieve.pdb
+CFLAGS=/Isrc /Zi /M$(CRTLIB)d /Fdbuild\libsieve.pdb
 LIBSIEVE=libsieve_d.lib
 !ELSE
-CFLAGS=/Isrc /O2 /MD
+CFLAGS=/Isrc /O2 /M$(CRTLIB)
 LIBSIEVE=libsieve.lib
 !ENDIF
 
