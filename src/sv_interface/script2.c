@@ -105,8 +105,11 @@ static void static_check_support(struct sieve2_context *c)
 {
 	if (c->callbacks.fileinto)
 	    c->support.fileinto = 1;
+
+    if (c->callbacks.storefile)
+        c->support.storefile = 1;
 	
-        if (c->callbacks.reject)
+    if (c->callbacks.reject)
 	    c->support.reject = 1;
 
 	if (c->callbacks.getenvelope)
@@ -146,6 +149,7 @@ VISIBLE int sieve2_callbacks(sieve2_context_t *context,
           CBCASE(SIEVE2_ACTION_REJECT,         reject);
           CBCASE(SIEVE2_ACTION_DISCARD,        discard);
           CBCASE(SIEVE2_ACTION_FILEINTO,       fileinto);
+          CBCASE(SIEVE2_ACTION_STOREFILE,      storefile);
           CBCASE(SIEVE2_ACTION_KEEP,           keep);
           CBCASE(SIEVE2_ACTION_NOTIFY,         notify);
           CBCASE(SIEVE2_ACTION_VACATION,       vacation);
@@ -287,6 +291,7 @@ VISIBLE char * sieve2_listextensions(sieve2_context_t *sieve2_context)
                                   "relational ",
         ( c->support.subaddress ? "subaddress "  : "" ),
         ( c->support.fileinto   ? "fileinto "  : "" ),
+        ( c->support.storefile  ? "storefile " : "" ),
         ( c->support.reject     ? "reject "    : "" ),
         ( c->support.envelope   ? "envelope "  : "" ),
         ( c->support.vacation   ? "vacation "  : "" ),

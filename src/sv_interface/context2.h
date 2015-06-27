@@ -21,6 +21,7 @@ struct callbacks2 {
     sieve2_callback_func reject;
     sieve2_callback_func discard;
     sieve2_callback_func fileinto;
+	sieve2_callback_func storefile;
     sieve2_callback_func keep;
     sieve2_callback_func notify;
     sieve2_callback_func denotify;
@@ -52,6 +53,7 @@ struct support2 {
     enum boolean          reject;
     enum boolean          notify;
     enum boolean          fileinto;
+	enum boolean          storefile;
     enum boolean          vacation;
     enum boolean          envelope;
     enum boolean          imap4flags;
@@ -69,6 +71,7 @@ struct actions2 {
     enum boolean          reject;
     enum boolean          discard;
     enum boolean          fileinto;
+	enum boolean          storefile;
     enum boolean          keep;
     enum boolean          notify;
     enum boolean          denotify;

@@ -111,6 +111,10 @@ struct Commandlist {
 	    char *mailbox;
 	    stringlist_t *slflags;
 	} f;
+	struct { /* it's a storefile action */
+		char *glob;
+		char *destination;
+	} s;
 	struct { /* it's a vacation action */
 	    char *subject;
 	    int days;

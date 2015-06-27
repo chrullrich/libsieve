@@ -348,6 +348,12 @@ int libsieve_eval(struct sieve2_context *context,
                 *errmsg = "Fileinto can not be used with Reject";
             TRACE_DEBUG("Doing a fileinto");
             break;
+        case STOREFILE:
+            res = libsieve_do_storefile(context, c->u.s.glob, c->u.s.destination);
+            if (res == SIEVE2_ERROR_EXEC)
+                *errmsg = "Storefile can not be used with Reject";
+            TRACE_DEBUG("Doing a storefile");
+            break;
         case REDIRECT:
             res = libsieve_do_redirect(context, c->u.str);
             if (res == SIEVE2_ERROR_EXEC)

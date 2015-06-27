@@ -81,6 +81,7 @@ int libsieve_callback_do(
           CBCALL(SIEVE2_ACTION_REJECT,         reject);
           CBCALL(SIEVE2_ACTION_DISCARD,        discard);
           CBCALL(SIEVE2_ACTION_FILEINTO,       fileinto);
+          CBCALL(SIEVE2_ACTION_STOREFILE,      storefile);
           CBCALL(SIEVE2_ACTION_KEEP,           keep);
           CBCALL(SIEVE2_ACTION_NOTIFY,         notify);
           CBCALL(SIEVE2_ACTION_DENOTIFY,       denotify);

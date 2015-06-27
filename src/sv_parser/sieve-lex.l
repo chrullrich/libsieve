@@ -118,6 +118,7 @@ CRLF		(\r\n|\r|\n)
 <INITIAL>hasflag	return HASFLAG;
 <INITIAL>mark		return MARK;
 <INITIAL>unmark		return UNMARK;
+<INITIAL>storefile	return STOREFILE;
 <INITIAL>:flags		return FLAGS;
 <INITIAL>notify		return NOTIFY;
 <INITIAL>valid_notif_method return VALIDNOTIF;

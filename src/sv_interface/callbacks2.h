@@ -38,6 +38,7 @@ int libsieve_callback_end(
 /* These have been rewritten and moved into callbacks2.c... */
 int libsieve_do_reject(struct sieve2_context *c, char *msg);
 int libsieve_do_fileinto(struct sieve2_context *c, char *mbox, stringlist_t *slflags);
+int libsieve_do_storefile(struct sieve2_context *c, char *glob, char *destination);
 int libsieve_do_redirect(struct sieve2_context *c, char *addr);
 int libsieve_do_keep(struct sieve2_context *c, stringlist_t *slflags);
 int libsieve_do_discard(struct sieve2_context *c);

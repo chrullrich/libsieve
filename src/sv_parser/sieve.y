@@ -148,7 +148,7 @@ extern YY_DECL;
 %token <nval> NUMBER
 %token <sval> STRING
 %token IF ELSIF ELSE
-%token REJCT FILEINTO REDIRECT KEEP STOP DISCARD VACATION REQUIRE
+%token REJCT FILEINTO STOREFILE REDIRECT KEEP STOP DISCARD VACATION REQUIRE
 %token SETFLAG ADDFLAG REMOVEFLAG MARK UNMARK FLAGS HASFLAG
 %token NOTIFY VALIDNOTIF
 %token ANYOF ALLOF EXISTS SFALSE STRUE HEADER NOT SIZE ADDRESS ENVELOPE
@@ -273,6 +273,13 @@ action: REJCT STRING             { if (!context->require.reject) {
 	                           $$ = libsieve_new_command(FILEINTO);
 				   $$->u.f.slflags = NULL;
 				   $$->u.f.mailbox = $2; }
+	| STOREFILE STRING STRING { if (!context->require.storefile) {
+									libsieve_sieveerror(context, yyscanner, "storefile not required");
+									YYERROR;
+									}
+								$$ = libsieve_new_command(STOREFILE);
+								$$->u.s.glob = $2;
+								$$->u.s.destination = $3; }
 	| REDIRECT STRING         { $$ = libsieve_new_command(REDIRECT);
                                   if (!static_verify_address(context, $2)) {
 				     YYERROR; /* va should call sieveerror() */
@@ -928,7 +935,9 @@ static int static_check_reqs(struct sieve2_context *c, char *req)
 {
     if (0 == strcmp("fileinto", req)) {
         return c->require.fileinto = c->support.fileinto;
-    } else if (0 == strcmp("reject", req)) {
+    } else if (0 == strcmp("storefile", req)) {
+		return c->require.storefile = c->support.storefile;
+	} else if (0 == strcmp("reject", req)) {
         return c->require.reject = c->support.reject;
     } else if (!strcmp("envelope", req)) {
         return c->require.envelope = c->support.envelope;

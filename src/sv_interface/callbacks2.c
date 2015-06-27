@@ -30,12 +30,13 @@
 #include "src/sv_util/util.h"
 
 /* Reject is incompatible with:
- * fileinto, redirect, keep, reject, vacation,
+ * fileinto, storefile, redirect, keep, reject, vacation,
  * setflag, addflag, removeflag
  */
 int libsieve_do_reject(struct sieve2_context *c, char *msg)
 {
     if (c->actions.fileinto
+     || c->actions.storefile
      || c->actions.redirect
      || c->actions.keep
      || c->actions.reject
@@ -86,6 +87,28 @@ int libsieve_do_fileinto(struct sieve2_context *c, char *mbox, stringlist_t *slf
 
     // FIXME: Add flags, but not its contents, to the context freelist.
     libsieve_free(flags);
+
+    return SIEVE2_OK;
+}
+
+
+/* Storefile is incompatible with:
+ * reject
+ */
+int libsieve_do_storefile(struct sieve2_context *c, char *glob, char *destination)
+{
+    if (c->actions.reject)
+        return SIEVE2_ERROR_EXEC;
+
+    c->actions.storefile = TRUE;
+
+    libsieve_callback_begin(c, SIEVE2_ACTION_STOREFILE);
+
+    libsieve_setvalue_string(c, "glob", glob);
+	libsieve_setvalue_string(c, "destination", destination);
+
+    libsieve_callback_do(c, SIEVE2_ACTION_STOREFILE);
+    libsieve_callback_end(c, SIEVE2_ACTION_STOREFILE);
 
     return SIEVE2_OK;
 }
