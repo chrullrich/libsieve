@@ -19,9 +19,9 @@
 #define read(fd, buffer, count) _read(fd, buffer, count)
 
 /* Same where the same function has a different name */
-#if _MSC_VER < 1900
 #define strcasecmp _stricmp
 #define strncasecmp _strnicmp
+#if _MSC_VER < 1900
 #define snprintf _snprintf
 #endif
 
