@@ -8,8 +8,6 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
-#include "msvc.h"
-
 #include <config.h>
 #include <stdio.h>
 #include <string.h>
