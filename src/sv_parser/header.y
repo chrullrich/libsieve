@@ -10,7 +10,7 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
- #include "msvc.h"
+ #include "msvc/msvc.h"
 
 #include <stdio.h>
 #include <stdlib.h>

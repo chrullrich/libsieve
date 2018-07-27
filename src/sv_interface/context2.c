@@ -9,7 +9,7 @@
  * version 2.1, and other versions at the author's discretion.
  * * * */
 
-#include "msvc.h"
+#include "msvc/msvc.h"
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

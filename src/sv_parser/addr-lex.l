@@ -27,7 +27,7 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ******************************************************************/
 
-#include "msvc.h"
+#include "msvc/msvc.h"
 
 /* Must be defined before addr.h */
 #define YYSTYPE char *
