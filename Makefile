@@ -1,28 +1,51 @@
 FLEX=flex
 BISON=bison
 AR=lib
+CC=cl
 
+CFLAGS=/Isrc
 FLFLAGS=--nounistd
 YFLAGS=
 
 !IFDEF STATIC
 CRTLIB=T
+SUFFIX_HYPHEN=-
+SUFFIX_STATIC=s
 !ELSE
 CRTLIB=D
 !ENDIF
 
-!IFDEF DEBUG
-CFLAGS=/Isrc /Zi /M$(CRTLIB)d /Fdbuild\libsieve.pdb
-LIBSIEVE=libsieve_d.lib
+!IFDEF DLL
+CFLAGS=$(CFLAGS) /DLIBSIEVE_EXPORTS
+PREFIX=
+EXTENSION=dll
+OBJECTS=$(OBJECTS) src\dllmain.obj
 !ELSE
-CFLAGS=/Isrc /O2 /M$(CRTLIB)
-LIBSIEVE=libsieve.lib
+PREFIX=lib
+EXTENSION=lib
 !ENDIF
+
+!IFDEF DEBUG
+CRTMODE=d
+SUFFIX_HYPHEN=-
+SUFFIX_DEBUG=gd
+OUTPUT=$(PREFIX)sieve2$(SUFFIX_HYPHEN)$(SUFFIX_STATIC)$(SUFFIX_DEBUG)
+CFLAGS=$(CFLAGS) /Zi /Fdbuild\$(PREFIX)sieve$(SUFFIX_HYPHEN)$(SUFFIX_STATIC)$(SUFFIX_DEBUG).pdb
+!ELSE
+CRTMODE= 
+CFLAGS=$(CFLAGS) /O2
+OUTPUT=$(PREFIX)sieve2$(SUFFIX_HYPHEN)$(SUFFIX_STATIC)$(SUFFIX_DEBUG)
+!ENDIF
+
+OBJECTS=src\sv_interface\callbacks2.obj src\sv_interface\context2.obj src\sv_interface\message.obj src\sv_interface\message2.obj src\sv_interface\script.obj src\sv_interface\script2.obj src\sv_interface\tree.obj src\sv_parser\addr.obj src\sv_parser\addr-lex.obj src\sv_parser\comparator.obj src\sv_parser\header.obj src\sv_parser\header-lex.obj src\sv_parser\sieve.obj src\sv_parser\sieve-lex.obj src\sv_regex\regex.obj src\sv_util\exception.obj src\sv_util\md5.obj src\sv_util\util.obj
+
+CFLAGS=$(CFLAGS) /M$(CRTLIB)$(CRTMODE)
+LIBSIEVE=$(OUTPUT).$(EXTENSION)
 
 all: build\$(LIBSIEVE)
 
 clean:
-	del /s *.lib
+	del build\**
 	del /s *.obj
 	del /s *.pdb
 	del src\sv_parser\addr.c src\sv_parser\addr.h
@@ -48,7 +71,10 @@ src\sv_parser\header.c src\sv_parser\header.h: src\sv_parser\header.y
 src\sv_parser\sieve.c src\sv_parser\sieve.h: src\sv_parser\sieve.y
 	$(BISON) $(YFLAGS) -o $*.c $**
 
-build\$(LIBSIEVE): src\sv_interface\callbacks2.obj src\sv_interface\context2.obj src\sv_interface\message.obj src\sv_interface\message2.obj src\sv_interface\script.obj src\sv_interface\script2.obj src\sv_interface\tree.obj src\sv_parser\addr.obj src\sv_parser\addr-lex.obj src\sv_parser\comparator.obj src\sv_parser\header.obj src\sv_parser\header-lex.obj src\sv_parser\sieve.obj src\sv_parser\sieve-lex.obj src\sv_regex\regex.obj src\sv_util\exception.obj src\sv_util\md5.obj src\sv_util\util.obj
+build\$(OUTPUT).lib: $(OBJECTS)
 	-md build
 	$(AR) /nologo /out:$@ $(**F)
 
+build\$(OUTPUT).dll: $(OBJECTS)
+	-md build
+	$(CC) /LD$(CRTMODE) /Fe:$@ $(**F) /link /DEF:src\msvc\libsieve.def

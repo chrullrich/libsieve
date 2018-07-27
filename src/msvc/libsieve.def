@@ -1,0 +1,16 @@
+EXPORTS
+	sieve2_alloc
+	sieve2_free
+	sieve2_callbacks
+	sieve2_listextensions
+	sieve2_validate
+	sieve2_execute
+	sieve2_getvalue_string
+	sieve2_getvalue_stringlist
+	sieve2_getvalue_int
+	sieve2_setvalue_string
+	sieve2_setvalue_stringlist
+	sieve2_setvalue_int
+	sieve2_errstr
+	sieve2_credits
+	sieve2_license
