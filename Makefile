@@ -1,5 +1,5 @@
-FLEX=flex
-BISON=bison
+FLEX=C:\Daten\work\install\win_flex_bison-2.5.25\win_flex.exe
+BISON=C:\Daten\work\install\win_flex_bison-2.5.25\win_bison.exe
 AR=lib
 CC=cl
 
