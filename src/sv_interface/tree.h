@@ -114,6 +114,8 @@ struct Commandlist {
 	struct { /* it's a storefile action */
 		char *glob;
 		char *destination;
+		char prefix;
+		char unblock;
 	} s;
 	struct { /* it's a vacation action */
 	    char *subject;
@@ -139,6 +141,11 @@ struct Commandlist {
 	} d;
     } u;
     struct Commandlist *next;
+};
+
+struct storefile_opts {
+	char prefix;
+	char unblock;
 };
 
 stringlist_t *libsieve_new_sl(char *s, stringlist_t *n);

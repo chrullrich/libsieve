@@ -143,12 +143,14 @@ extern YY_DECL;
     struct htags *htag;
     struct hftags *hftag;
     struct ntags *ntag;
+	struct storefile_opts sftag;
 }
 
 %token <nval> NUMBER
 %token <sval> STRING
 %token IF ELSIF ELSE
 %token REJCT FILEINTO STOREFILE REDIRECT KEEP STOP DISCARD VACATION REQUIRE
+%token UNBLOCK PREFIX
 %token SETFLAG ADDFLAG REMOVEFLAG MARK UNMARK FLAGS HASFLAG
 %token NOTIFY VALIDNOTIF
 %token ANYOF ALLOF EXISTS SFALSE STRUE HEADER NOT SIZE ADDRESS ENVELOPE
@@ -168,6 +170,7 @@ extern YY_DECL;
 %type <vtag> vtags
 %type <ntag> ntags
 %type <sval> priority
+%type <sftag> storefile_opts;
 
 %%
 
@@ -230,6 +233,10 @@ elsif: /* empty */               { $$ = NULL; }
 	| ELSE block             { $$ = $2; }
 	;
 
+storefile_opts: %empty	{ $<sftag>$.unblock = 0; $<sftag>$.prefix = 0; }
+              | storefile_opts UNBLOCK { $<sftag>$.unblock = 1; }
+			  | storefile_opts PREFIX  { $<sftag>$.prefix = 1; };
+
 action: REJCT STRING             { if (!context->require.reject) {
 	                             libsieve_sieveerror(context, yyscanner, "reject not required");
 				     YYERROR;
@@ -273,13 +280,17 @@ action: REJCT STRING             { if (!context->require.reject) {
 	                           $$ = libsieve_new_command(FILEINTO);
 				   $$->u.f.slflags = NULL;
 				   $$->u.f.mailbox = $2; }
-	| STOREFILE STRING STRING { if (!context->require.storefile) {
-									libsieve_sieveerror(context, yyscanner, "storefile not required");
-									YYERROR;
-									}
-								$$ = libsieve_new_command(STOREFILE);
-								$$->u.s.glob = $2;
-								$$->u.s.destination = $3; }
+	| STOREFILE storefile_opts STRING STRING {
+			if (!context->require.storefile) {
+				libsieve_sieveerror(context, yyscanner, "storefile not required");
+				YYERROR;
+			}
+			$$ = libsieve_new_command(STOREFILE);
+			$$->u.s.unblock = $2.unblock;
+			$$->u.s.prefix = $2.prefix;
+			$$->u.s.glob = $3;
+			$$->u.s.destination = $4;
+		}
 	| REDIRECT STRING         { $$ = libsieve_new_command(REDIRECT);
                                   if (!static_verify_address(context, $2)) {
 				     YYERROR; /* va should call sieveerror() */

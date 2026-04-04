@@ -150,6 +150,8 @@ CRLF		(\r\n|\r|\n)
 <INITIAL>:domain	return DOMAIN;
 <INITIAL>:user		return USER;
 <INITIAL>:detail	return DETAIL;
+<INITIAL>:unblock	return UNBLOCK;
+<INITIAL>:prefix	return PREFIX;
 <INITIAL>[ \t\n\r] ;	/* ignore whitespace */
 <INITIAL>#.* ;		/* ignore comments */
 <INITIAL>\/\*           { BEGIN COMMENT; }

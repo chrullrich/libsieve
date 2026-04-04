@@ -95,7 +95,7 @@ int libsieve_do_fileinto(struct sieve2_context *c, char *mbox, stringlist_t *slf
 /* Storefile is incompatible with:
  * reject
  */
-int libsieve_do_storefile(struct sieve2_context *c, char *glob, char *destination)
+int libsieve_do_storefile(struct sieve2_context *c, char *glob, char *destination, char unblock, char prefix)
 {
     if (c->actions.reject)
         return SIEVE2_ERROR_EXEC;
@@ -106,6 +106,8 @@ int libsieve_do_storefile(struct sieve2_context *c, char *glob, char *destinatio
 
     libsieve_setvalue_string(c, "glob", glob);
 	libsieve_setvalue_string(c, "destination", destination);
+	libsieve_setvalue_int(c, "unblock", unblock);
+	libsieve_setvalue_int(c, "prefix", prefix);
 
     libsieve_callback_do(c, SIEVE2_ACTION_STOREFILE);
     libsieve_callback_end(c, SIEVE2_ACTION_STOREFILE);
